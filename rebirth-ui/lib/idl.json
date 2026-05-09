@@ -1,0 +1,258 @@
+{
+  "address": "42we4cDKuoWk3bA9ApqP6b3i1UppF3uXtaQkHf2PjgLV",
+  "metadata": {
+    "name": "rebirth_program",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "approve_investor",
+      "discriminator": [
+        54,
+        39,
+        39,
+        78,
+        3,
+        23,
+        157,
+        160
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "spv_state"
+          ]
+        },
+        {
+          "name": "spv_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  112,
+                  118
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "spv_state"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_spv",
+      "discriminator": [
+        155,
+        147,
+        106,
+        185,
+        120,
+        239,
+        157,
+        204
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "spv_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  112,
+                  118
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "jurisdiction",
+          "type": "string"
+        },
+        {
+          "name": "target_raise",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "revoke_investor",
+      "discriminator": [
+        81,
+        196,
+        65,
+        97,
+        158,
+        243,
+        172,
+        101
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "spv_state"
+          ]
+        },
+        {
+          "name": "spv_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  112,
+                  118
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "spv_state"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "SpvState",
+      "discriminator": [
+        46,
+        254,
+        81,
+        53,
+        71,
+        80,
+        22,
+        228
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Only the SPV authority can perform this action"
+    },
+    {
+      "code": 6001,
+      "name": "MintSizeError",
+      "msg": "Failed to calculate mint account size"
+    }
+  ],
+  "types": [
+    {
+      "name": "SpvState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "target_raise",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "jurisdiction",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "SPV_SEED",
+      "type": "bytes",
+      "value": "[115, 112, 118]"
+    }
+  ]
+}
