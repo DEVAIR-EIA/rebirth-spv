@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply w-full px-3 py-2.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600;
+  }
+}
+
+/* wallet-adapter button color tweak so it sits on the dark theme */
+.wallet-adapter-button-trigger {
+  background-color: rgb(244 244 245) !important;
+  color: rgb(9 9 11) !important;
+  border-radius: 0.5rem !important;
+  height: 40px !important;
+  font-weight: 600 !important;
+}
