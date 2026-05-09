@@ -3,14 +3,28 @@ import type { Metadata } from 'next';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'ReBirth — One-click SPV Factory',
-  description: 'Launch a compliant SPV on Solana in 60 seconds.',
+  title: 'ReBirth — SPV factory on Solana',
+  description:
+    'Deploy a compliant single-purpose investment vehicle to Solana in 60 seconds. Token-2022 instruments with protocol-enforced transfer compliance.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-zinc-950 text-zinc-100 min-h-screen antialiased">
+    <html lang="en">
+      <head>
+        {/*
+          Fonts are loaded at runtime via Google Fonts CSS rather than next/font/google
+          because the build environment has no outbound access to fonts.googleapis.com.
+          font-display:swap keeps text readable during fetch.
+        */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        />
+      </head>
+      <body className="bg-paper text-ink font-body min-h-screen">
         <Providers>{children}</Providers>
       </body>
     </html>
